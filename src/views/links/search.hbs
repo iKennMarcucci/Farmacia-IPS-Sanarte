@@ -4,7 +4,7 @@
             <p>Resultados de "<b>{{filtro}}</b>"</p>
         </h5>
         <hr />
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 d-flex justify-content-center">
             {{#if producto}}
             {{#each producto}}
             <form action="/links/index" method="POST">
@@ -12,7 +12,7 @@
                     <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
                         style="max-width: 20rem;">
                         <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
-                                class="img-fluid" src="{{imagen_producto}}">
+                                class="img-fluid mx-auto" src="{{imagen_producto}}">
                         </div>
                         <div class="card-body" style="block-size: 175px;">
                             <h5 class="card-title">{{nombre_producto}}</h5>
@@ -29,13 +29,13 @@
                 </div>
             </form>
             {{/each}}
+            {{else}}
         </div>
-        {{else}}
-        <div class="row d-flex align-items-center mx-auto text-center mt-3">
-            <h3 class="col-12 fs-2 text-danger">No se ha encontrado el producto que buscabas...</h3>
-            <div>
-                <img src="/img/svgs/404.png" class="rounded mx-auto d-block">
-            </div>
+        <div class="alert alert-danger mt-3 text-center" role="alert">
+            <h4 class="fst-italic fw-semibold">No se ha encontrado el producto que buscas</h4>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img class="mx-auto" src="/img/svgs/404.png">
         </div>
         {{/if}}
     </div>
