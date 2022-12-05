@@ -1,0 +1,73 @@
+.navbar-background {
+    background-color: #071041;
+}
+
+.btn-IPS-verde {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #8abf00;
+    --bs-btn-border-color: var(--bd-violet);
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #527200;
+    --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
+    --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+}
+
+.activado,
+.activado:hover {
+    color: #8abf00;
+    border-bottom: 5px solid #8abf00;
+    box-sizing: content-box;
+    height: 100%;
+}
+
+.cerodepadding {
+    padding-bottom: 0;
+}
+
+.text-IPS-azul-navbar {
+    color: #5b91ee;
+    border-bottom: 5px solid #071041;
+    box-sizing: content-box;
+    height: 100%;
+}
+
+.text-IPS-azul-navbar:hover {
+    color: #8abf00;
+    border-bottom: 5px solid #8abf00;
+    box-sizing: content-box;
+    height: 100%;
+}
+
+.text-IPS-azul-navbar:focus {
+    color: #fff;
+    border-bottom: 5px solid #fff;
+    box-sizing: content-box;
+    height: 100%;
+}
+
+.flotante {
+    display: scroll;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+
+.btn-IPS-azul {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #132bb3;
+    --bs-btn-border-color: var(--bd-violet);
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #09155a;
+    --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
+    --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+}

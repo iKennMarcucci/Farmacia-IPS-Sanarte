@@ -1,0 +1,151 @@
+<main>
+    <div class="container">
+        <h5 class="mx-5 fst-italic fw-semibold fs-2">
+            <b>SALUD</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {{#each productosSalud}}
+            <form action="/links/index" method="POST">
+                <div class="col">
+                    <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
+                        style="max-width: 20rem;">
+                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid" src="/img/imgSalud/{{imagen_producto}}">
+                        </div>
+                        <div class="card-body" style="block-size: 150px;">
+                            <h5 class="card-title">{{nombre_producto}}</h5>
+                            <p class="card-text">{{dosis_producto}}</p>
+                            <p class="card-text">{{via_producto}}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-bottom">
+                            <div class="d-flex justify-content-center">
+                                <button type="but" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold fs-2">
+            <b>HIGIENE</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {{#each productosHigiene}}
+            <form action="/links/index" method="POST">
+                <div class="col">
+                    <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
+                        style="max-width: 20rem;">
+                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid" src="/img/imgHigiene/{{imagen_producto}}">
+                        </div>
+                        <div class="card-body" style="block-size: 175px;">
+                            <h5 class="card-title">{{nombre_producto}}</h5>
+                            <p class="card-text">{{dosis_producto}}</p>
+                            <p class="card-text">{{via_producto}}</p>
+                            <button type="submit" class="btn color-comprar"></button>
+                        </div>
+                        <div class="card-footer bg-transparent border-bottom">
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold fs-2">
+            <b>HOGAR</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {{#each productosHogar}}
+            <form action="/links/index" method="POST">
+                <div class="col">
+                    <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
+                        style="max-width: 20rem;">
+                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid" src="/img/imgHogar/{{imagen_producto}}">
+                        </div>
+                        <div class="card-body" style="block-size: 200px;">
+                            <h5 class="card-title">{{nombre_producto}}</h5>
+                            <p class="card-text">{{dosis_producto}}</p>
+                            <p class="card-text">{{via_producto}}</p>
+                            <button type="submit" class="btn color-comprar"></button>
+                        </div>
+                        <div class="card-footer bg-transparent border-bottom">
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold fs-2">
+            <b>COSMÉTICOS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {{#each productosCosmetic}}
+            <form action="/links/index" method="POST">
+                <div class="col">
+                    <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
+                        style="max-width: 20rem;">
+                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid" src="/img/imgCosmeticos/{{imagen_producto}}">
+                        </div>
+                        <div class="card-body" style="block-size: 175px;">
+                            <h5 class="card-title">{{nombre_producto}}</h5>
+                            <p class="card-text">{{dosis_producto}}</p>
+                            <p class="card-text">{{via_producto}}</p>
+                            <button type="submit" class="btn color-comprar"></button>
+                        </div>
+                        <div class="card-footer bg-transparent border-bottom">
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold fs-2">
+            <b>BEBIDAS Y COMIDAS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {{#each productosComida}}
+            <form action="/links/index" method="POST">
+                <div class="col">
+                    <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
+                        style="max-width: 20rem;">
+                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid" src="/img/imgComida/{{imagen_producto}}">
+                        </div>
+                        <div class="card-body" style="block-size: 150px;">
+                            <h5 class="card-title">{{nombre_producto}}</h5>
+                            <p class="card-text">{{dosis_producto}}</p>
+                            <p class="card-text">{{via_producto}}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-bottom">
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{/each}}
+        </div>
+    </div>
+</main>
