@@ -10,9 +10,17 @@
     <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
     <title>Farmacia IPS Sanarte</title>
 </head>
+
 <body>
+    {{#if nonavbar}}
+    {{else}}
     {{> navbar }}
+    {{/if}}
+    {{#if success}}
+    {{> successtrue}}
+    {{/if}}
     {{{ body }}}
     {{> scripts}}
 </body>
+
 </html>

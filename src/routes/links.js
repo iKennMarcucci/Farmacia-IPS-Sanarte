@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
+const path = require('path');
 
 // GET/POST INDEX
 router.get('/index', async (req, res) => {
@@ -9,6 +10,8 @@ router.get('/index', async (req, res) => {
     const productosHogar = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 3');
     const productosCosmetic = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 4');
     const productosComida = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 5');
+
+    console.log(productosSalud);
 
     res.render('links/index', { productosSalud, productosHigiene, productosHogar, productosCosmetic, productosComida });
 });
@@ -75,6 +78,13 @@ router.get('/cart', async (req, res) => {
 router.post('/cart', (req, res) => {
     res.render('links/cart');
 });
+//usar flash MENSAJES DE ACEPTAICON
+// router.post('/cart', (req, res) => {
+//     .
+//     .
+//     .
+//     req.flash('success', 'Link saved successfully');
+// });
 
 router.post('/search', async (req, res) => {
     const { nombre } = req.body;
@@ -104,4 +114,5 @@ router.post('/search', async (req, res) => {
         res.render("links/search", { producto, filtro });
     }
 });
+
 module.exports = router;

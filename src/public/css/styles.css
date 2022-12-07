@@ -21,12 +21,6 @@
 .activado:hover {
     color: #8abf00;
     border-bottom: 5px solid #8abf00;
-    box-sizing: content-box;
-    height: 100%;
-}
-
-.cerodepadding {
-    padding-bottom: 0;
 }
 
 .text-IPS-azul-navbar {
@@ -55,6 +49,25 @@
     position: fixed;
     bottom: 5px;
     right: 5px;
+}
+
+.textRosa {
+    color: #f7105b;
+}
+
+.btn-IPS-rosa {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #f7105b;
+    --bs-btn-bg: #fff;
+    --bs-btn-border-color: #f7105b;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #f7105b;
+    --bs-btn-hover-border-color: #f7105b;
+    --bs-btn-focus-shadow-rgb: #cd0d4a;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #cd0d4a;
+    --bs-btn-active-border-color: #cd0d4a;
 }
 
 .btn-IPS-azul {
