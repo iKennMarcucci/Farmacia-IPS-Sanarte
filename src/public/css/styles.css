@@ -70,6 +70,21 @@
     --bs-btn-active-border-color: #cd0d4a;
 }
 
+.btn-login {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #f7105b;
+    --bs-btn-border-color: #f7105b;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #cd0d4a;
+    --bs-btn-hover-border-color: #cd0d4a;
+    --bs-btn-focus-shadow-rgb: #cd0d4a;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #cd0d4a;
+    --bs-btn-active-border-color: #cd0d4a;
+}
+
 .btn-IPS-azul {
     --bs-btn-font-weight: 600;
     --bs-btn-color: #fff;

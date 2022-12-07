@@ -7,6 +7,11 @@ router.get('/signup', (req, res) => {
     res.render('auth/signup', { nonavbar });
 });
 
+router.get('/login', (req, res) => {
+    var nonavbar = true;
+    res.render('auth/login', { nonavbar });
+});
+
 router.post('/signup', passport.authenticate('local.signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
@@ -14,7 +19,6 @@ router.post('/signup', passport.authenticate('local.signup', {
 }));
 
 router.get('/profile', (req, res) => {
-
     res.send('PAGINA DE PERFIL');
 });
 
