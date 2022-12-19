@@ -1,4 +1,5 @@
 const express = require('express');
+const { serializeUser, deserializeUser } = require('passport');
 const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
@@ -21,10 +22,10 @@ router.get('/salud', async (req, res) => {
 });
 
 router.post('/salud', isLoggedIn, async (req, res) => {
-    const producto = await buscarProducto(req.body.producto);
+    const precio = normalizarPrecio(req.body.precio);
+    await pool.query('INSERT INTO cart (id_usuario, id_producto, precio_total) VALUES (' + req.user.id_usuario + ',' + req.body.producto + ',' + precio + ')');
     let productosSalud = await pool.query('SELECT * FROM producto WHERE id_categoria = 1');
     productosSalud = convertirPrecio(productosSalud);
-    console.log(producto);
     res.render('links/salud', { productosSalud });
 });
 
@@ -36,10 +37,10 @@ router.get('/higiene', async (req, res) => {
 });
 
 router.post('/higiene', isLoggedIn, async (req, res) => {
-    const producto = await buscarProducto(req.body.producto);
+    const precio = normalizarPrecio(req.body.precio);
+    await pool.query('INSERT INTO cart (id_usuario, id_producto, precio_total) VALUES (' + req.user.id_usuario + ',' + req.body.producto + ',' + precio + ')');
     let productosHigiene = await pool.query('SELECT * FROM producto WHERE id_categoria = 2');
     productosHigiene = convertirPrecio(productosHigiene);
-    console.log(producto);
     res.render('links/higiene', { productosHigiene });
 });
 
@@ -51,10 +52,10 @@ router.get('/hogar', async (req, res) => {
 });
 
 router.post('/hogar', isLoggedIn, async (req, res) => {
-    const producto = await buscarProducto(req.body.producto);
+    const precio = normalizarPrecio(req.body.precio);
+    await pool.query('INSERT INTO cart (id_usuario, id_producto, precio_total) VALUES (' + req.user.id_usuario + ',' + req.body.producto + ',' + precio + ')');
     let productosHogar = await pool.query('SELECT * FROM producto WHERE id_categoria = 3');
     productosHogar = convertirPrecio(productosHogar);
-    console.log(producto);
     res.render('links/hogar', { productosHogar });
 });
 
@@ -66,10 +67,10 @@ router.get('/cosmetic', async (req, res) => {
 });
 
 router.post('/cosmetic', isLoggedIn, async (req, res) => {
-    const producto = await buscarProducto(req.body.producto);
+    const precio = normalizarPrecio(req.body.precio);
+    await pool.query('INSERT INTO cart (id_usuario, id_producto, precio_total) VALUES (' + req.user.id_usuario + ',' + req.body.producto + ',' + precio + ')');
     let productosCosmetic = await pool.query('SELECT * FROM producto WHERE id_categoria = 4');
     productosCosmetic = convertirPrecio(productosCosmetic);
-    console.log(producto);
     res.render('links/cosmetic', { productosCosmetic });
 });
 
@@ -81,10 +82,10 @@ router.get('/comida', async (req, res) => {
 });
 
 router.post('/comida', isLoggedIn, async (req, res) => {
-    const producto = await buscarProducto(req.body.producto);
+    const precio = normalizarPrecio(req.body.precio);
+    await pool.query('INSERT INTO cart (id_usuario, id_producto, precio_total) VALUES (' + req.user.id_usuario + ',' + req.body.producto + ',' + precio + ')');
     let productosComida = await pool.query('SELECT * FROM producto WHERE id_categoria = 5');
     productosComida = convertirPrecio(productosComida);
-    console.log(producto);
     res.render('links/comida', { productosComida });
 });
 
@@ -111,6 +112,11 @@ function convertirPrecio(objeto) {
         element.precio_producto = formatter.format(element.precio_producto);
     });
     return objeto;
+}
+
+function normalizarPrecio(precio) {
+    precio = precio.replace(",", "")
+    return precio;
 }
 
 async function buscarProducto(id_producto) {
