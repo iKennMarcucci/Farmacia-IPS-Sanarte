@@ -1,118 +1,120 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
-const path = require('path');
+const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
+const formatter = new Intl.NumberFormat('en-US');
 
 // GET/POST INDEX
 router.get('/index', async (req, res) => {
-    const productosSalud = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 1');
-    const productosHigiene = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 2');
-    const productosHogar = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 3');
-    const productosCosmetic = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 4');
-    const productosComida = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 5');
-
-    console.log(productosSalud);
-
-    res.render('links/index', { productosSalud, productosHigiene, productosHogar, productosCosmetic, productosComida });
+    res.render('links/index');
 });
 
-router.post('/index', (req, res) => {
-    res.render('links/index', {});
+router.post('/index', isLoggedIn, async (req, res) => {
+    res.render('links/index');
 });
 
 // GET/POST SALUD
 router.get('/salud', async (req, res) => {
-    const productosSalud = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 1');
+    let productosSalud = await pool.query('SELECT * FROM producto WHERE id_categoria = 1');
+    productosSalud = convertirPrecio(productosSalud);
     res.render('links/salud', { productosSalud });
 });
 
-router.post('/salud', (req, res) => {
-    res.render('links/index');
+router.post('/salud', isLoggedIn, async (req, res) => {
+    const producto = await buscarProducto(req.body.producto);
+    let productosSalud = await pool.query('SELECT * FROM producto WHERE id_categoria = 1');
+    productosSalud = convertirPrecio(productosSalud);
+    console.log(producto);
+    res.render('links/salud', { productosSalud });
 });
 
 // GET/POST HIGIENE
 router.get('/higiene', async (req, res) => {
-    const productosHigiene = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 2');
+    let productosHigiene = await pool.query('SELECT * FROM producto WHERE id_categoria = 2');
+    productosHigiene = convertirPrecio(productosHigiene);
     res.render('links/higiene', { productosHigiene });
 });
 
-router.post('/higiene', (req, res) => {
-    res.render('links/index');
+router.post('/higiene', isLoggedIn, async (req, res) => {
+    const producto = await buscarProducto(req.body.producto);
+    let productosHigiene = await pool.query('SELECT * FROM producto WHERE id_categoria = 2');
+    productosHigiene = convertirPrecio(productosHigiene);
+    console.log(producto);
+    res.render('links/higiene', { productosHigiene });
 });
 
 // GET/POST HOGAR
 router.get('/hogar', async (req, res) => {
-    const productosHogar = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 3');
+    let productosHogar = await pool.query('SELECT * FROM producto WHERE id_categoria = 3');
+    productosHogar = convertirPrecio(productosHogar);
     res.render('links/hogar', { productosHogar });
 });
 
-router.post('/hogar', (req, res) => {
-    res.render('links/index');
+router.post('/hogar', isLoggedIn, async (req, res) => {
+    const producto = await buscarProducto(req.body.producto);
+    let productosHogar = await pool.query('SELECT * FROM producto WHERE id_categoria = 3');
+    productosHogar = convertirPrecio(productosHogar);
+    console.log(producto);
+    res.render('links/hogar', { productosHogar });
 });
 
 // GET/POST COSMETICOS
 router.get('/cosmetic', async (req, res) => {
-    const productosCosmetic = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 4');
+    let productosCosmetic = await pool.query('SELECT * FROM producto WHERE id_categoria = 4');
+    productosCosmetic = convertirPrecio(productosCosmetic);
     res.render('links/cosmetic', { productosCosmetic });
 });
 
-router.post('/cosmetic', (req, res) => {
-    res.render('links/index');
+router.post('/cosmetic', isLoggedIn, async (req, res) => {
+    const producto = await buscarProducto(req.body.producto);
+    let productosCosmetic = await pool.query('SELECT * FROM producto WHERE id_categoria = 4');
+    productosCosmetic = convertirPrecio(productosCosmetic);
+    console.log(producto);
+    res.render('links/cosmetic', { productosCosmetic });
 });
 
 // GET/POST COMIDA Y BEBIDA
 router.get('/comida', async (req, res) => {
-    const productosComida = await pool.query('SELECT id_producto, nombre_producto, dosis_producto, via_producto, id_categoria, inventario_producto, activo_producto, imagen_producto FROM producto WHERE id_categoria = 5');
+    let productosComida = await pool.query('SELECT * FROM producto WHERE id_categoria = 5');
+    productosComida = convertirPrecio(productosComida);
     res.render('links/comida', { productosComida });
 });
 
-router.post('/comida', (req, res) => {
-    res.render('links/index');
+router.post('/comida', isLoggedIn, async (req, res) => {
+    const producto = await buscarProducto(req.body.producto);
+    let productosComida = await pool.query('SELECT * FROM producto WHERE id_categoria = 5');
+    productosComida = convertirPrecio(productosComida);
+    console.log(producto);
+    res.render('links/comida', { productosComida });
 });
 
 // GET/POST CART
-router.get('/cart', async (req, res) => {
+router.get('/cart', isLoggedIn, async (req, res) => {
     res.render('links/cart');
 });
 
-router.post('/cart', (req, res) => {
+router.post('/cart', isLoggedIn, (req, res) => {
     res.render('links/cart');
 });
-//usar flash MENSAJES DE ACEPTAICON
-// router.post('/cart', (req, res) => {
-//     .
-//     .
-//     .
-//     req.flash('success', 'Link saved successfully');
-// });
 
 router.post('/search', async (req, res) => {
     const { nombre } = req.body;
     if (nombre != "") {
         const producto = await pool.query("SELECT * FROM producto WHERE nombre_producto REGEXP ?", nombre);
         const filtro = nombre;
-
-        for (let i = 0; i < producto.length; i++) {
-            var linkimg = '';
-            if (producto[i].id_categoria == 1) {
-                linkimg = producto[i].imagen_producto;
-                producto[i].imagen_producto = '/img/imgSalud/' + linkimg;
-            } else if (producto[i].id_categoria == 2) {
-                linkimg = producto[i].imagen_producto;
-                producto[i].imagen_producto = '/img/imgHigiene/' + linkimg;
-            } else if (producto[i].id_categoria == 3) {
-                linkimg = producto[i].imagen_producto;
-                producto[i].imagen_producto = '/img/imgHogar/' + linkimg;
-            } else if (producto[i].id_categoria == 4) {
-                linkimg = producto[i].imagen_producto;
-                producto[i].imagen_producto = '/img/imgCosmeticos/' + linkimg;
-            } else if (producto[i].id_categoria == 5) {
-                linkimg = producto[i].imagen_producto;
-                producto[i].imagen_producto = '/img/imgComida/' + linkimg;
-            }
-        }
         res.render("links/search", { producto, filtro });
     }
 });
 
+function convertirPrecio(objeto) {
+    objeto.forEach(element => {
+        element.precio_producto = formatter.format(element.precio_producto);
+    });
+    return objeto;
+}
+
+async function buscarProducto(id_producto) {
+    const producto = await pool.query('SELECT * FROM producto WHERE id_producto = ' + id_producto);
+    return producto;
+}
 module.exports = router;

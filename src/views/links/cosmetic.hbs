@@ -6,22 +6,26 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
             {{#each productosCosmetic}}
-            <form action="/links/index" method="POST">
+            <form action="/links/cosmetic" method="POST">
                 <div class="col">
                     <div class="card text-bg-white mb-3 overflow-hidden justify-content-center"
                         style="max-width: 20rem;">
-                        <div class="card-header overflow-hidden d-flex" style="block-size: 200px;"><img
-                                class="img-fluid mx-auto" src="/img/imgCosmeticos/{{imagen_producto}}">
+                        <div class="card-header bg-transparent overflow-hidden d-flex" style="block-size: 200px;"><img
+                                class="img-fluid mx-auto" src="{{imagen_producto}}">
                         </div>
-                        <div class="card-body" style="block-size: 175px;">
+                        <div class="card-body text-wrap text-truncate" style="block-size: 100px; max-height:85px;">
                             <h5 class="card-title">{{nombre_producto}}</h5>
-                            <p class="card-text">{{dosis_producto}}</p>
-                            <p class="card-text">{{via_producto}}</p>
-                            <button type="submit" class="btn color-comprar"></button>
+                        </div>
+                        <div class="card-body bg-transparent border-0">
+                            <p class="card-text">{{dosis_producto}} X {{via_producto}}</p>
+                        </div>
+                        <div class="card-body bg-transparent border-0">
+                            <p class="card-text badge brosa text-wrap">$ {{precio_producto}}</p>
                         </div>
                         <div class="card-footer bg-transparent border-bottom">
                             <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-lg btn-IPS-azul">Comprar</button>
+                                <input type="hidden" name="producto" value="{{id_producto}}" />
+                                <button type="submit" class="btn btn-lg btn-IPS-azul">Comprar</button>
                             </div>
                         </div>
                     </div>

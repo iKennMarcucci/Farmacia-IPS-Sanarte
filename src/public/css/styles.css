@@ -55,6 +55,14 @@
     color: #f7105b;
 }
 
+.textAzul {
+    color: #1523cc;
+}
+
+.brosa {
+    background-color: #f7105b;
+}
+
 .btn-IPS-rosa {
     --bs-btn-font-weight: 600;
     --bs-btn-color: #f7105b;
