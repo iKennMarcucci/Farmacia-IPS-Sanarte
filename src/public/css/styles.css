@@ -63,6 +63,10 @@
     background-color: #f7105b;
 }
 
+.bverde {
+    background-color: #09ff00;
+}
+
 .btn-IPS-rosa {
     --bs-btn-font-weight: 600;
     --bs-btn-color: #f7105b;
@@ -106,4 +110,30 @@
     --bs-btn-active-color: var(--bs-btn-hover-color);
     --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
     --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+}
+
+.counter {
+    width: 150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.counter input {
+    width: 50px;
+    border: 0;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    appearance: none;
+    outline: 0;
+}
+
+.counter button {
+    display: block;
+    border: 0;
+    background: none;
+    font-size: 25px;
+    padding: 0 10px;
 }

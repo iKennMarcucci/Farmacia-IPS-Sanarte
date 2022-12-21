@@ -4,8 +4,89 @@
             <b>CARRITO DE COMPRAS</b>
         </h5>
         <hr />
-        <div class="alert alert-danger mt-3 text-center" role="alert">
-            <h4 class="fst-italic fw-semibold">No se han encontrado productos en tu carrito.</h4>
+        <div class="row mb-5">
+            <div class="col-9">
+                {{#each productos}}
+                <form action="/links/cart" method="post">
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-4 m-auto text-center" style="height: 200px;">
+                                <img src="{{imagen_producto}}" class="img-fluid rounded-start h-100">
+                            </div>
+                            <div class="col-8 m-auto">
+                                <div class="card-body">
+                                    <div class="primero">
+                                        <h4 class="card-title fw-bold">{{nombre_producto}}</h4>
+                                        <div class="btn-group btn-group-sm" role="group"
+                                            aria-label="Small button group">
+                                            <div class="counter">
+                                                <button type="submit" name="resta" value="resta">-</button>
+                                                <input type="text" value="{{cant_producto}}" disabled>
+                                                <button type="submit" name="suma" value="suma">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row align-items-end">
+                                        <div class="segundo">
+                                            <div class="col text-start">
+                                                <p class="fw-bold">$ {{precio_total}}</p>
+                                            </div>
+                                            <div class="col">
+                                                <input name="element" value="{{id_producto}}" type="hidden">
+                                                <div class="d-flex justify-content-end me-3">
+                                                    <button class="noselect" name="delete" value="delete"><span
+                                                            class="text">Quitar</span><span class="icon"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24">
+                                                                <path
+                                                                    d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                                                                </path>
+                                                            </svg></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{else}}
+            </div>
+            <div class="alert alert-danger mt-3 text-center" role="alert">
+                <h4 class="fst-italic fw-semibold">No se han encontrado productos en tu carrito.</h4>
+            </div>
+            {{/each}}
+            {{#if productos}}
         </div>
+        <div class="col-3">
+            <div class="card text-center" style="position: sticky; top: 125px;">
+                <div class="card-body border border-dark">
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text fw-bold">Subtotal</p>
+                        </div>
+                        <div class="col">
+                            <p class="fw-bold">$ {{total}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border border-dark bg-secondary bg-opacity-10">
+                    <button class="cta">
+                        <span class="hover-underline-animation"> Comprar </span>
+                        <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg"
+                            id="arrow-horizontal">
+                            <path transform="translate(30)"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                data-name="Path 10" id="Path_10"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
     </div>
 </main>
